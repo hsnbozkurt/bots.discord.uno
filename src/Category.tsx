@@ -5,14 +5,53 @@ import Spinner from "./components/Spinner";
 import BotFromSearchResult from "./components/BotFromSearchResult";
 import "./assets/boxicons/css/boxicons.min.css";
 import NavBar from "./components/Navbar";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-export default function Allbots() {
+const categories = [
+  {
+    "id": 4,
+    "name": "Entertainment"
+  },
+  {
+    "id": 6,
+    "name": "Games"
+  },
+  {
+    "id": 8,
+    "name": "Moderation and Tools"
+  },
+  {
+    "id": 9,
+    "name": "Social"
+  },
+  {
+    "id": 10,
+    "name": "Utilities"
+  }
+];
+export default function Category() {
+  const category = useParams().category;
+  const categoryName = categories.find((c) => c.id === parseInt(category ?? "999"))?.name;
   const [page, setPage] = useState(1);
 
   const query = useSearch({
     page,
+    categoryId: category,
   });
-
+  if (!category) {
+    return (
+        <div>
+            <h1>How did you get here?</h1>
+        </div>
+    )
+  }
+  if (!categoryName) {
+    return (
+        <div>
+            <h1>Naber</h1>
+        </div>
+    )
+  }
   function handlePageChange(page: number) {
     setPage(page);
   }
@@ -20,22 +59,22 @@ export default function Allbots() {
   return (
     <main className="page-wrapper">
       <Helmet>
-        <title>Discord.uno - All Bots</title>
+        <title>Discord.uno - Bots in {categoryName}</title>
         <meta
           name="description"
-          content="Discord.uno is a directory of Discord bots that you can add to your server. Find the perfect bot for your server on Discord.uno."
+          content={`Discord.uno is a directory of Discord bots that you can add to your server. Find the perfect bot for your server in ${categoryName} on Discord.uno.`}
         />
         <meta
           name="keywords"
-          content="discord bots, discord bot list, discord bot directory, discord bot, discord, discord uno"
+          content={`discord bots, discord bot list, discord bot directory, discord bot, discord, discord uno, ${categoryName} discord bot`}
         />
-        <meta property="og:title" content="Discord.uno - Discord Bots" />
+        <meta property="og:title" content={`Discord.uno - Bots in ${categoryName}`} />
       </Helmet>
       <NavBar />
       <section className="position-relative py-5 border-bottom">
         <div className="container mt-4 mb-lg-5 pt-lg-2 pb-5">
           <div className="align-items-end gy-3 mb-4 pb-lg-3 pb-1">
-            <h1 className="mb-2 mb-md-0">Total Bots</h1>
+            <h1 className="mb-2 mb-md-0">Bots in {categoryName}</h1>
             <span className="text-muted">
               Find the best bots for your server..
             </span>

@@ -1,3 +1,68 @@
+export interface SimularBots {
+  applications: CollecitonBotsApplication[]
+  num_pages: number
+  load_id: string
+}
+
+export interface CollecitonBotsApplication {
+  id: string
+  name: string
+  icon: string
+  description: string
+  summary: string
+  type?: number
+  is_monetized: boolean
+  bot: Bot
+  hook: boolean
+  guild_id: string
+  storefront_available: boolean
+  bot_public: boolean
+  bot_require_code_grant: boolean
+  terms_of_service_url: string
+  privacy_policy_url: string
+  install_params?: InstallParams
+  integration_types_config: IntegrationTypesConfig
+  verify_key: string
+  flags: number
+  guild: Guild
+  tags: string[]
+  categories: Category[]
+  directory_entry: DirectoryEntry
+  cover_image?: string
+  primary_sku_id?: string
+  slug?: string
+  primary_sku?: PrimarySku
+  custom_install_url?: string
+}
+export interface ApplicationResult {
+  id: string
+  name: string
+  icon: string
+  description: string
+  summary: string
+  type: any
+  is_monetized: boolean
+  primary_sku_id: string
+  bot: Bot
+  hook: boolean
+  slug: string
+  guild_id: string
+  storefront_available: boolean
+  bot_public: boolean
+  bot_require_code_grant: boolean
+  terms_of_service_url: string
+  privacy_policy_url: string
+  install_params: InstallParams
+  integration_types_config: IntegrationTypesConfig
+  verify_key: string
+  flags: number
+  guild: Guild
+  tags: string[]
+  categories: Category[]
+  directory_entry: DirectoryEntry
+  primary_sku: PrimarySku
+}
+
 export interface SearchResults {
   results: Result[]
   num_pages: number
@@ -61,16 +126,6 @@ export interface Guild {
 }
 
 
-export interface DirectoryEntry {
-  guild_count: number
-  detailed_description?: string
-  carousel_items?: CarouselItem[]
-  supported_locales: string[]
-  external_urls?: ExternalUrl[]
-  popular_application_command_ids: string[]
-  popular_application_commands: PopularApplicationCommand[]
-  short_description: string
-}
 
 
 
@@ -178,10 +233,10 @@ export interface ApplicationDirectoryCollectionItem {
   type: number
   image_hash?: string
   position: number
-  application: Application
+  application: CollecitonBotsApplication
 }
 
-export interface Application {
+export interface CollecitonBotsApplication {
   id: string
   name: string
   icon: string

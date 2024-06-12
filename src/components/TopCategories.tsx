@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const categories = [
   {
     id: 4,
@@ -25,9 +27,9 @@ export default function TopCategories() {
     <ul className="nav nav-tabs justify-content-center">
       {categories.map((category) => (
         <li className="nav-item">
-          <a href={`/categories/${category.id}`} className="nav-link">
+          <Link to={`/categories/${category.id}`} className="nav-link">
             {category.name}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

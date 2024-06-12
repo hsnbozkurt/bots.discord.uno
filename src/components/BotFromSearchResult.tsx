@@ -1,10 +1,17 @@
-import { Result } from "../discord";
-import { BotAvatar } from "./Bot";
+import { Link } from "react-router-dom";
+import { Bot, DirectoryEntry } from "../discord";
+import { BotAvatar } from "./BotFromCollection";
 
-export default function BotFromSearchResult({ result }: { result: Result }) {
+export default function BotFromSearchResult({ result }: { result: {
+  data:{
+    bot:Bot,
+    id:string,
+    directory_entry:DirectoryEntry
+  }
+}}) {
   return (
-    <a
-      href={`/bot/${result.data.bot.id}`}
+    <Link
+      to={`/bot/${result.data.id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div
@@ -33,6 +40,6 @@ export default function BotFromSearchResult({ result }: { result: Result }) {
           </div>
         </figcaption>
       </div>
-    </a>
+    </Link>
   );
 }

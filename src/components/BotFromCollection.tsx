@@ -1,15 +1,16 @@
 import Categories from "./Categories";
 import { ApplicationDirectoryCollectionItem, Bot as BotType } from "../discord";
+import { Link } from "react-router-dom";
 
-export default function Bot({
+export default function BotFromCollection({
   bot: item,
 }: {
   bot: ApplicationDirectoryCollectionItem;
 }) {
   return (
-    <a
+    <Link
       key={item.application.bot.id}
-      href={`/bot/${item.application.bot.id}`}
+      to={`/bot/${item.application.bot.id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div
@@ -42,7 +43,7 @@ export default function Bot({
           </div>
         </figcaption>
       </div>
-    </a>
+    </Link>
   );
 }
 export function BotAvatar({

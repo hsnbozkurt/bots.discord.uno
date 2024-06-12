@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type  { Category } from "../discord";
 export default function Categories({
     categories,
@@ -8,7 +9,7 @@ export default function Categories({
         <>
         {
             categories.map((category) => (
-                <a key={category.id} href={`/categories/${category.id}`} className="badge bg-secondary me-2 mb-2">{category.name}</a>
+                <Link key={category.id} to={`/categories/${category.id}`} className="badge bg-secondary me-2 mb-2">{category.name}</Link>
             ))
         }
         </>
