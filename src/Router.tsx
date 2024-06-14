@@ -17,6 +17,7 @@ export default function Router() {
       <Route path="/deprem" element={<Bot id="1010946492544069724" />} />
       <Route path="/uno" element={<Bot id="1178269349325320192" />} />
       <Route path="/coplack" element={<Bot id="969239288589991966" />} />
+      <Route path="/strange" element={<Bot id="974532293332971582" />} />
     </Routes> 
   );
 }
