@@ -5,7 +5,7 @@ import Spinner from "./components/Spinner";
 import BotFromSearchResult from "./components/BotFromSearchResult";
 import "./assets/boxicons/css/boxicons.min.css";
 import NavBar from "./components/Navbar";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { PaginationItem } from "@mui/material";
 const categories = [
@@ -33,8 +33,8 @@ const categories = [
 export default function Category() {
   const category = useParams().category;
   const categoryName = categories.find((c) => c.id === parseInt(category ?? "999"))?.name;
-  const url = new URL(window.location.href);
-  const [page, setPage] = useState(parseInt(url.searchParams.get("page") ?? "1"));
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(parseInt(searchParams.get("page") ?? "1"));
 
   const query = useSearch({
     page,
@@ -56,6 +56,7 @@ export default function Category() {
   }
   function handlePageChange(page: number) {
     setPage(page);
+    setSearchParams({ page: page.toString() });
   }
 
   return (

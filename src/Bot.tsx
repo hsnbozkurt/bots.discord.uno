@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ApplicationResult, SimularBots } from "./discord";
 import "./assets/botspagestyles.css";
 import "./assets/boxicons.min.css";
@@ -25,8 +25,8 @@ export default function Bot({ id }: { id?: string | undefined }) {
     },
     enabled: !!botId,
   });
-  const url = new URL(window.location.href);
-  const [simularBotsPage, setSimularBotsPage] = useState(parseInt(url.searchParams.get("relevant_bots_page") ?? "1"));
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [simularBotsPage, setSimularBotsPage] = useState(parseInt(searchParams.get("relevant_bots_page") ?? "1"));
   const simularBots = useQuery({
     queryKey: ["simularBots", botId, simularBotsPage],
     queryFn: async () => {
@@ -174,7 +174,10 @@ export default function Bot({ id }: { id?: string | undefined }) {
           >
             <CustomPagination
               page={simularBotsPage}
-              onChange={(_e, page) => setSimularBotsPage(page)}
+              onChange={(_e, page) => {
+                setSimularBotsPage(page);
+                setSearchParams({ relevant_bots_page: page.toString() });
+              }}
               count={simularBots.data?.num_pages ?? 1}
               color="secondary"
               size="large"

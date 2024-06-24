@@ -7,11 +7,11 @@ import "./assets/boxicons/css/boxicons.min.css";
 import NavBar from "./components/Navbar";
 import { Helmet } from "react-helmet";
 import { PaginationItem } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 export default function Allbots() {
-  const url = new URL(window.location.href);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(
-    parseInt(url.searchParams.get("page") ?? "1")
+    parseInt(searchParams.get("page") ?? "1")
   );
 
   const query = useSearch({
@@ -20,6 +20,7 @@ export default function Allbots() {
 
   function handlePageChange(page: number) {
     setPage(page);
+    setSearchParams({ page: page.toString() });
   }
 
   return (
