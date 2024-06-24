@@ -10,6 +10,7 @@ import MarkdownRenderer from "./components/MarkdownRenderer";
 import { CustomPagination } from "./common";
 import NavBar from "./components/Navbar";
 import { Helmet } from "react-helmet";
+import { PaginationItem } from "@mui/material";
 export default function Bot({ id }: { id?: string | undefined }) {
   const paramBotId = useParams().id;
   const botId = id || paramBotId;
@@ -24,7 +25,8 @@ export default function Bot({ id }: { id?: string | undefined }) {
     },
     enabled: !!botId,
   });
-  const [simularBotsPage, setSimularBotsPage] = useState(1);
+  const url = new URL(window.location.href);
+  const [simularBotsPage, setSimularBotsPage] = useState(parseInt(url.searchParams.get("relevant_bots_page") ?? "1"));
   const simularBots = useQuery({
     queryKey: ["simularBots", botId, simularBotsPage],
     queryFn: async () => {
@@ -178,6 +180,13 @@ export default function Bot({ id }: { id?: string | undefined }) {
               size="large"
               showFirstButton
               showLastButton
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={`?relevant_bots_page=${item.page}`}
+                  {...item}
+                />
+              )}
             />
           </div>
         </div>

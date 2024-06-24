@@ -6,8 +6,13 @@ import BotFromSearchResult from "./components/BotFromSearchResult";
 import "./assets/boxicons/css/boxicons.min.css";
 import NavBar from "./components/Navbar";
 import { Helmet } from "react-helmet";
+import { PaginationItem } from "@mui/material";
+import { Link } from "react-router-dom";
 export default function Allbots() {
-  const [page, setPage] = useState(1);
+  const url = new URL(window.location.href);
+  const [page, setPage] = useState(
+    parseInt(url.searchParams.get("page") ?? "1")
+  );
 
   const query = useSearch({
     page,
@@ -67,6 +72,13 @@ export default function Allbots() {
               size="large"
               showFirstButton
               showLastButton
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={`?page=${item.page}`}
+                  {...item}
+                />
+              )}
             />
           </div>
         </div>
