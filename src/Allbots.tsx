@@ -26,7 +26,7 @@ export default function Allbots() {
   return (
     <main className="page-wrapper">
       <Helmet>
-        <title>Discord.uno - All Bots</title>
+        <title>Discord.uno - All Bots {page > 1 ? `Page ${page}` : ""}</title>
         <meta
           name="description"
           content="Discord.uno is a directory of Discord bots that you can add to your server. Find the perfect bot for your server on Discord.uno."
@@ -35,7 +35,7 @@ export default function Allbots() {
           name="keywords"
           content="discord bots, discord bot list, discord bot directory, discord bot, discord, discord uno"
         />
-        <meta property="og:title" content="Discord.uno - Discord Bots" />
+        <meta property="og:title" content={`Discord.uno - All Bots ${page > 1 ? `Page ${page}` : ""}`} />
       </Helmet>
       <NavBar />
       <section className="position-relative py-5 border-bottom">

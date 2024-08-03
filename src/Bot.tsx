@@ -65,7 +65,7 @@ export default function Bot({ id }: { id?: string | undefined }) {
   return (
     <main className="page-wrapper">
       <Helmet>
-        <title>{bot.data.bot.username} - Discord.uno</title>
+        <title>{bot.data.bot.username} {simularBotsPage > 1 ? `Page ${simularBotsPage}` : ""} - Discord.Uno</title>
         <meta
           name="description"
           content={bot.data.directory_entry.detailed_description ?? ""}
@@ -74,7 +74,7 @@ export default function Bot({ id }: { id?: string | undefined }) {
           name="keywords"
           content={`discord bots, discord bot list, discord bot directory, discord bot, discord, discord uno, ${bot.data.bot.username}, ${bot.data.bot.username} invite`}
         />
-        <meta property="og:title" content={`${bot.data.bot.username} - Discord.Uno`} />
+        <meta property="og:title" content={`${bot.data.bot.username} ${simularBotsPage > 1 ? `Page ${simularBotsPage}` : ""} - Discord.Uno`} />
       </Helmet>
     <NavBar/>
       <section className="container mt-4 mb-5 pt-2 pb-lg-5">

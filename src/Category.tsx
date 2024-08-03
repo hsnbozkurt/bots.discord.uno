@@ -62,7 +62,7 @@ export default function Category() {
   return (
     <main className="page-wrapper">
       <Helmet>
-        <title>Discord.uno - Bots in {categoryName}</title>
+        <title>Discord.uno - Bots in {categoryName} {page > 1 ? `Page ${page}` : ""}</title>
         <meta
           name="description"
           content={`Discord.uno is a directory of Discord bots that you can add to your server. Find the perfect bot for your server in ${categoryName} on Discord.uno.`}
@@ -71,7 +71,7 @@ export default function Category() {
           name="keywords"
           content={`discord bots, discord bot list, discord bot directory, discord bot, discord, discord uno, ${categoryName} discord bot`}
         />
-        <meta property="og:title" content={`Discord.uno - Bots in ${categoryName}`} />
+        <meta property="og:title" content={`Discord.uno - Bots in ${categoryName} ${page > 1 ? `Page ${page}` : ""}`} />
       </Helmet>
       <NavBar />
       <section className="position-relative py-5 border-bottom">
