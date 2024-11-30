@@ -6,7 +6,7 @@ export default function Search({ categoryId }: { categoryId?: number }) {
   const [query, setQuery] = useState("");
   const searchResult = useSearch({
     query,
-    categoryId,
+    categoryId: categoryId ? categoryId+"" : undefined,
   });
   function handleChange() {
     const searchValue = (document.getElementById("searchBot") as HTMLInputElement)!
